@@ -1,9 +1,30 @@
-ase 2:
+import { Trophy, Sword, Crown, Medal, Star } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+const pvpData = [
+  { rank: 1, name: "Moneyfight", emoji: "💸", status: "active" },
+  { rank: 2, name: "Spqxk", emoji: "🗡️", status: "active" },
+  { rank: 3, name: "Nansqs", emoji: "🔥", status: "active" },
+  { rank: 4, name: "Nikola", emoji: "⚡", status: "active" },
+  { rank: 5, name: "Longt_t", emoji: "🐺", status: "active" },
+  { rank: 6, name: "Mango", emoji: "🥭", status: "active" },
+  { rank: 7, name: "648k", emoji: "🔱", status: "active" },
+  { rank: 8, name: "Coming Soon...", emoji: "⏳", status: "coming" },
+  { rank: 9, name: "Coming Soon...", emoji: "⏳", status: "coming" },
+  { rank: 10, name: "Coming Soon...", emoji: "⏳", status: "coming" },
+];
+
+const getRankIcon = (rank: number) => {
+  switch (rank) {
+    case 1:
+      return <Crown className="w-6 h-6 text-yellow-400" />;
+    case 2:
       return <Medal className="w-6 h-6 text-gray-300" />;
     case 3:
       return <Trophy className="w-6 h-6 text-amber-600" />;
     default:
-      return <Star className="w-5 h-5 text-blue-400" />;
+      return <Star className="w-5 h-5 text-slate-500" />;
   }
 };
 
@@ -16,7 +37,7 @@ const getRankGradient = (rank: number) => {
     case 3:
       return "from-amber-600/20 to-orange-600/20 border-amber-600/30";
     default:
-      return "from-blue-500/10 to-purple-600/10 border-blue-500/20";
+      return "from-slate-800/50 to-slate-900/50 border-slate-700/30";
   }
 };
 
@@ -68,7 +89,7 @@ const Index = () => {
             ))}
           </div>
 
-          {/* Rest of the Rankings */}
+          {/* Rest of the Rankings - Dark Theme */}
           <div className="space-y-4">
             {pvpData.slice(3).map((player) => (
               <Card
@@ -76,7 +97,7 @@ const Index = () => {
                 className={`bg-gradient-to-r ${getRankGradient(
                   player.rank
                 )} backdrop-blur-sm border transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${
-                  player.status === "coming" ? "opacity-60" : ""
+                  player.status === "coming" ? "opacity-50" : ""
                 }`}
               >
                 <CardContent className="p-6">
@@ -84,22 +105,22 @@ const Index = () => {
                     <div className="flex items-center gap-6">
                       <div className="flex items-center gap-3">
                         {getRankIcon(player.rank)}
-                        <span className="text-3xl font-bold text-white">#{player.rank}</span>
+                        <span className="text-3xl font-bold text-slate-400">#{player.rank}</span>
                       </div>
-                      <div className="text-4xl">{player.emoji}</div>
+                      <div className="text-4xl opacity-80">{player.emoji}</div>
                       <div>
                         <h3 className={`text-xl font-semibold ${
-                          player.status === "coming" ? "text-slate-400" : "text-white"
+                          player.status === "coming" ? "text-slate-500" : "text-slate-300"
                         }`}>
                           {player.name}
                         </h3>
                         {player.status === "active" && (
-                          <p className="text-slate-300 text-sm">Elite PvP Player</p>
+                          <p className="text-slate-500 text-sm">Elite PvP Player</p>
                         )}
                       </div>
                     </div>
                     {player.status === "active" && (
-                      <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                      <Badge className="bg-slate-700/30 text-slate-400 border-slate-600/30">
                         Active
                       </Badge>
                     )}
